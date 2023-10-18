@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import SearchBar from './components/searchBar/SearchBar';
+import {Route, Routes} from "react-router-dom"
+import ProductPage from './components/productPage/ProductPage';
+import { useState } from 'react';
 
 function App() {
+  const [searchKeyword, setSearchKeyword] = useState("")
   return (
+    <>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<SearchBar setSearchKeyword={setSearchKeyword} searchKeyword={searchKeyword}/>}/>
+        <Route path={`/${searchKeyword}`} element={<ProductPage searchKeyword={searchKeyword}/>}/>
+      </Routes>
     </div>
+    {/* <SearchBar/>
+    <ProductPage/> */}
+    </>
   );
 }
 
